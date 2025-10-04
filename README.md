@@ -3,6 +3,8 @@
 
 ためのツールキットです。
 
-This custom node is a toolkit designed to help you run **batch processing (such as sequential
+This custom node is a toolkit designed to help you run **batch processing (such as sequential**
 
-image generation) more smoothly in ComfyUI.**
+**image generation) more smoothly in ComfyUI.**
+
+
