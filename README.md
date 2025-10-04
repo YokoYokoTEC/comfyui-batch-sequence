@@ -1,2 +1,2 @@
-# comfyui-batch-sequence
-ComfyUIでのバッチ処理（連続した画像生成など）をよりスムーズに行うためのツールキットです。
+## ComfyUI Batch Sequence Node
+このカスタムノードは、**ComfyUIでのバッチ処理（連続した画像生成など）をよりスムーズに行う**ためのツールキットです。
