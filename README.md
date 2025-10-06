@@ -36,7 +36,9 @@ Output an integer sequence from 0 up to the number of batches (Batch Count).
 
 ## ReadLine
 
-指定ファイルの該当行のテキストを抽出します。
+指定テキストファイルの該当行のテキストを抽出します。
+
+Extracts the text string from the specified line of a given text file.
 
 - line
     読み込む行の指定、先頭は0から
