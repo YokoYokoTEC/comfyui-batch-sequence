@@ -20,7 +20,7 @@ Output an integer sequence from 0 up to the number of batches (Batch Count).
 
     **Batch Count に指定した値と同じ物を指定**
 
-    ++Set the value to match the Batch Count.**
+    **Set the value to match the Batch Count.**
 
 - seed
 
