@@ -14,7 +14,7 @@ from .protcol import log
 @PromptServer.instance.routes.get("/YokoYokoTEC/LinRead/{name}")
 async def GetFile(request):
     name = request.match_info["name"]
-    log(name)
+#    log(name)
     path = folder_paths.get_input_directory()
     if name == "output":
         path = folder_paths.get_output_directory()
@@ -108,7 +108,7 @@ class LineRead:
     CATEGORY = "YokoYoko.Tec"
 
     def main(self, **kwargs):
-        print("%s, %s, %d" % (kwargs["path"], kwargs["file"], kwargs["line"]))
+        # print("%s, %s, %d" % (kwargs["path"], kwargs["file"], kwargs["line"]))
         self.file = get_file(kwargs["path"], kwargs["file"])
         with open(self.file, "r") as f:
             lines = f.read().splitlines()

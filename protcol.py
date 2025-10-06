@@ -9,7 +9,8 @@ from server import PromptServer
 
 
 def log(code):
-    logging.info("[YokoYoko Tec.] {%s}", (code))
+    if 0:
+        logging.info("[YokoYoko Tec.] {%s}", (code))
 
 
 def get_ext_dir(subpath=None, mkdir=False):
