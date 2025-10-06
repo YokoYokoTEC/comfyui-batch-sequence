@@ -77,7 +77,7 @@ class BatchCounter:
     CATEGORY = "YokoYoko.Tec"
 
     def main(self, count,  seed):
-        return (max(seed - count, 0),)
+        return (seed % count,)
 
 
 class LineRead:
@@ -100,6 +100,7 @@ class LineRead:
 
     @classmethod
     def IS_CHANGED(self, **kwargs):
+        self.file = get_file(kwargs["path"], kwargs["file"])
         return os.path.getmtime(self.file)
 
     RETURN_TYPES = ("STRING",)
@@ -107,6 +108,7 @@ class LineRead:
     CATEGORY = "YokoYoko.Tec"
 
     def main(self, **kwargs):
+        print("%s, %s, %d" % (kwargs["path"], kwargs["file"], kwargs["line"]))
         self.file = get_file(kwargs["path"], kwargs["file"])
         with open(self.file, "r") as f:
             lines = f.read().splitlines()

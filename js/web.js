@@ -1,15 +1,8 @@
 import {api} from '../../scripts/api.js';
 import {app} from '../../scripts/app.js';
 
-async function Changed(src, dst) {
-  let url = '/YokoYokoTEC/LinRead/' + src;
-  const res = await (await api.fetchApi(url)).json();
-  dst.options.values = []
-  dst.options.values = res;
-  const valid = dst.options.values.includes(dst.value);
-  if (!valid) {
-    dst.value = dst.options.values[0];
-  }
+async function disable(dst, fb) {
+  dst.disabled = fb;
 }
 
 app.registerExtension({
@@ -21,7 +14,7 @@ app.registerExtension({
         const r = origOnNodeCreated ? origOnNodeCreated.apply(this) : undefined;
         for (const w of this.widgets) {
           if (w.name === 'control_after_generate') {
-            w.value = 'increment';
+            w.value = w.options.values[1];
           }
         }
         return r;
@@ -35,6 +28,23 @@ app.registerExtension({
         for (const w of this.widgets) {
           if (w.name === 'file') {
             let lastValue;
+            async function Changed(src, dst) {
+              await disable(dst, true);
+              // ──────────────────────────
+              let url = '/YokoYokoTEC/LinRead/' + src.value;
+              const res = await (await api.fetchApi(url)).json();
+              // ──────────────────────────
+              dst.options.values = []
+              dst.options.values = res;
+              const valid = dst.options.values.includes(dst.value);
+              if (!valid) {
+                dst.value = dst.options.values[0];
+              }
+              // ──────────────────────────
+              await disable(dst, false);
+              app.graph.setDirtyCanvas(true, false);
+            }
+            // ──────────────────────────
             const src = this.widgets.find((w) => w.name === 'path');
             const cb = src.callback;
             src.callback =
@@ -42,13 +52,14 @@ app.registerExtension({
               const v = cb?.apply(this, arguments) ?? src.value;
               if (v !== lastValue) {
                 lastValue = v;
-                Changed(v, w);
+                Changed(src, w);
               }
               return v;
             }
             // ──────────────────────────
             lastValue = src.value;
-            Changed(src.value, w);
+            Changed(src, w);
+            lastValue = src.value;
           }
         }
         return r;
