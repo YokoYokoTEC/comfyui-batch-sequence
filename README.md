@@ -69,3 +69,9 @@ Extracts the text string from the specified line of a given text file.
 
     Specify the file to read.
 
+---
+<div style="text-align: right;">
+
+**[YokoYoko TEC.](https://note.com/alive_gibbon2712)**
+
+</div>
